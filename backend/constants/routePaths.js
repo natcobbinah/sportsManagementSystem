@@ -13,8 +13,10 @@ const getAllTickets = "/getAllTickets";
 const registerPlayerURL = "/registerPlayer";
 const generateReportURL = "/generateReport";
 const updateFixturesURL = "/updateFixtures";
-const buyTicketsURLURL = "/buyTickets";
-const submitCommentURL = "/addComment";
+const addCommentURL = "/addComment";
+const updateCommentURL = "/updateComment";
+const deleteCommentURL = "/deleteComment";
+const getAllCommentsURL = "/getAllComments";
 const welcomeURL = "/welcome";
 
 module.exports = {
@@ -31,9 +33,11 @@ module.exports = {
   ROUTE_registerPlayerURL: registerPlayerURL,
   ROUTE_generateReportURL: generateReportURL,
   ROUTE_updateFixturesURL: updateFixturesURL,
-  ROUTE_buyTicketsURLURL: buyTicketsURLURL,
   ROUTE_getAllTickets: getAllTickets,
-  ROUTE_submitCommentURL: submitCommentURL,
+  ROUTE_addCommentURL: addCommentURL,
+  ROUTE_updateCommentURL: updateCommentURL,
+  ROUTE_deleteCommentURL: deleteCommentURL,
+  ROUTE_getAllCommentsURL: getAllCommentsURL,
   ROUTE_welcomeURL: welcomeURL,
   ROUTE_buyTicket: buyTicket,
   ROUTE_addTicket: addTicket,

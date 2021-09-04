@@ -41,6 +41,12 @@ const SupporterSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Supporter", SupporterSchema);

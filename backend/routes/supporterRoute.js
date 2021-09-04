@@ -6,6 +6,7 @@ const {
   ROUTE_getAllSupportersURL,
   ROUTE_deleteSupporterByIdUrl,
   ROUTE_updateSupporterAccountURL,
+  ROUTE_getAllCommentsURL,
 } = require("../constants/routePaths");
 const Supporter = require("../models/supporter");
 
@@ -22,6 +23,36 @@ router.get(ROUTE_getAllSupportersURL, async (req, res) => {
   try {
     const getAllSupporters = await Supporter.find();
     res.json(getAllSupporters);
+  } catch (err) {
+    res.json({
+      message: err,
+    });
+  }
+});
+
+/**
+ * @swagger
+ * /supporters/getAllComments/{email}:
+ *  get:
+ *    description: Get all comments by a supporter by email
+ *    produces:
+ *          application/json
+ *    parameters:
+ *        - in: path
+ *          name: email
+ *          schema:
+ *                type: string
+ *                required: true
+ *    responses:
+ *        200:
+ *           description: 'Supporter comments retrieved successfully'
+ */
+router.get(ROUTE_getAllCommentsURL + "/:email", async (req, res) => {
+  try {
+    const getAllSupporterComments = await Supporter.find({
+      email: req.params.email,
+    }).populate("comments");
+    res.json(getAllSupporterComments);
   } catch (err) {
     res.json({
       message: err,
