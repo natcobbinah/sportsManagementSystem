@@ -6,6 +6,8 @@ import {
   deleteRegisteredUser,
 } from "../httpEndpoints/sportsapiUserRegLoginEndpoints";
 
+import { Container } from "react-bootstrap";
+
 class Users extends Component {
   constructor(props) {
     super(props);
@@ -26,10 +28,9 @@ class Users extends Component {
     const { allUsersResult } = this.state;
     console.log(allUsersResult);
     return (
-      <div>
-        <h1>USERS 10</h1>
-        <h1>USERS 10</h1>
-      </div>
+      <Container fluid>
+        <p>hello</p>
+      </Container>
     );
   }
 }
