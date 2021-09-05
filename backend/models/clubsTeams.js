@@ -4,11 +4,11 @@ const { Schema } = mongoose;
 const clubTeamsSchema = new Schema({
   clubName: {
     type: String,
-    required: true,
+    required: false,
   },
   country: {
     type: String,
-    required: true,
+    required: false,
   },
   clubCoach: [
     {
@@ -18,7 +18,7 @@ const clubTeamsSchema = new Schema({
   ],
   clubManager: {
     type: String,
-    required: true,
+    required: false,
   },
   clubSponsors: [
     {
@@ -26,8 +26,10 @@ const clubTeamsSchema = new Schema({
     },
   ],
   clubBadge: {
-    data: Buffer,
-    contentType: String,
+    type: Schema.Types.ObjectId,
+    required: false,
+    /* data: Buffer,
+    contentType: String, */
   },
 });
 

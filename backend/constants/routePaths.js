@@ -20,6 +20,10 @@ const addCommentURL = "/addComment";
 const updateCommentURL = "/updateComment";
 const deleteCommentURL = "/deleteComment";
 const getAllCommentsURL = "/getAllComments";
+const addClubTeam = "/addClubTeam";
+const getAllClubTeams = "/getAllClubTeams";
+const deleteClubTeam = "/deleteClubTeam";
+const updateClubTeam = "/updateClubTeam";
 const welcomeURL = "/welcome";
 
 module.exports = {
@@ -44,6 +48,12 @@ module.exports = {
   ROUTE_updateCommentURL: updateCommentURL,
   ROUTE_deleteCommentURL: deleteCommentURL,
   ROUTE_getAllCommentsURL: getAllCommentsURL,
+
+  ROUTE_addClubTeam: addClubTeam,
+  ROUTE_getAllClubTeams: getAllClubTeams,
+  ROUTE_deleteClubTeam: deleteClubTeam,
+  ROUTE_updateClubTeam: updateClubTeam,
+
   ROUTE_welcomeURL: welcomeURL,
   ROUTE_buyTicket: buyTicket,
   ROUTE_addTicket: addTicket,
