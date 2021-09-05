@@ -88,4 +88,102 @@ router.post(ROUTE_addCommentURL, async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /comments/updateComment/{id}:
+ *  patch:
+ *    description: update existing comment in the system by Id
+ *    produces:
+ *          application/json
+ *    parameters:
+ *        - in: path
+ *          name: id
+ *          schema:
+ *                type: string
+ *                required: true
+ *        - in: body
+ *          name: Update  comment details in the system
+ *          schema:
+ *              type: object
+ *              required:
+ *                  - description
+ *              properties:
+ *                    description:
+ *                      type: string
+ *    responses:
+ *        200:
+ *           description: 'Comment update from system successfully'
+ */
+router.patch(ROUTE_updateCommentURL + "/:id", async (req, res) => {
+  try {
+    const { description } = req.body;
+
+    //update comment
+    const updatedComment = await Comments.findByIdAndUpdate(
+      {
+        _id: req.params.id,
+      },
+      {
+        description,
+      }
+    );
+    //return update comment string message
+    res.status(200).json(updatedComment);
+  } catch (err) {
+    res.json({
+      message: err,
+    });
+  }
+});
+
+/**
+ * @swagger
+ * /comments/deleteComment/{id}:
+ *  delete:
+ *    description: delete existing comment in the system by Id
+ *    produces:
+ *          application/json
+ *    parameters:
+ *        - in: path
+ *          name: id
+ *          schema:
+ *                type: string
+ *                required: true
+ *    responses:
+ *        200:
+ *           description: 'Comment deleted from system successfully'
+ */
+router.delete(ROUTE_deleteCommentURL + "/:id", async (req, res) => {
+  try {
+    //find comment
+    const getComment = await Comments.findById({
+      _id: req.params.id,
+    });
+
+    //delete comment reference from Supporter
+    if (getComment) {
+      const deleteCommentReference = await Supporter.updateOne(
+        { _id: getComment.commentBy },
+        {
+          $pull: {
+            comments: {
+              _id: getComment._id,
+            },
+          },
+        }
+      );
+    }
+
+    //now delete comment from comment table
+    const deleteComment = await Comments.findByIdAndDelete({
+      _id: req.params.id,
+    });
+    res.status(200).send("Comments deleted successfully");
+  } catch (err) {
+    res.json({
+      message: err,
+    });
+  }
+});
+
 module.exports = router;

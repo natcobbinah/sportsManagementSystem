@@ -43,9 +43,9 @@ router.get(ROUTE_registerPlayerURL, async (req, res) => {
  *    produces:
  *          application/json
  *    parameters:
- *        - in: body
- *          name: Register new players into the system
- *          schema:
+ *         - in: body
+ *           name: Add new Player into the system
+ *           schema:
  *              type: object
  *              required:
  *                  - firstName
@@ -58,6 +58,7 @@ router.get(ROUTE_registerPlayerURL, async (req, res) => {
  *                  - birthdate
  *                  - city
  *                  - licenseNotes
+ *                  - image
  *                  - educationStatus
  *                  - mothersName
  *                  - salary
@@ -91,6 +92,9 @@ router.get(ROUTE_registerPlayerURL, async (req, res) => {
  *                      type: string
  *                   licenseNotes:
  *                      type: string
+ *                   image:
+ *                      type: string
+ *                      format: binary
  *                   educationStatus:
  *                      type: string
  *                   mothersName:
@@ -107,7 +111,7 @@ router.get(ROUTE_registerPlayerURL, async (req, res) => {
  *                      type: string
  *    responses:
  *        200:
- *           description: 'User loggedIn successfully'
+ *           description: 'Player Registered successfully'
  */
 router.post(
   ROUTE_registerPlayerURL,

@@ -7,6 +7,7 @@ const {
   ROUTE_addTicket,
   ROUTE_buyTicket,
 } = require("../constants/routePaths");
+const Supporter = require("../models/supporter");
 
 /**
  * @swagger
@@ -102,7 +103,7 @@ router.post(ROUTE_addTicket, async (req, res) => {
 
 /**
  * @swagger
- * /tickets/buyTicket/{id}:
+ * /tickets/buyTicket/{id}/{supporterId}:
  *  patch:
  *    description: Buy Ticket if Available and update ticket Status
  *    produces:
@@ -113,11 +114,17 @@ router.post(ROUTE_addTicket, async (req, res) => {
  *          schema:
  *                type: integer
  *                required: true
+ *        - in: path
+ *          name: supporterId
+ *          schema:
+ *                type: string
+ *                required: true
+ *
  *    responses:
  *        200:
  *           description: 'Ticket bought and its status updated successfully'
  */
-router.patch(ROUTE_buyTicket + "/:id", async (req, res) => {
+router.patch(ROUTE_buyTicket + "/:id" + "/:supporterId", async (req, res) => {
   try {
     //update ticket ticketStatus
     const ticket = await Tickets.findById({
@@ -134,10 +141,22 @@ router.patch(ROUTE_buyTicket + "/:id", async (req, res) => {
             ticketStatus: "Sold",
           }
         );
-        //return updated ticketStatus
-        res
-          .status(200)
-          .send("Ticket bought and its status updated successfully");
+
+        if (updatedTicket) {
+          const addTicketForSupporter = await Supporter.updateOne(
+            { _id: req.params.supporterId },
+            {
+              $push: {
+                tickets: {
+                  _id: ticket._id,
+                },
+              },
+            }
+          ).catch((err) => {
+            console.log(err);
+          });
+          res.json(addTicketForSupporter);
+        }
       } catch (err) {
         res.json({
           message: err,

@@ -22,11 +22,15 @@ const TicketSchema = new Schema({
   },
   ticketExpiryDate: {
     type: Date,
-    rquals: true,
+    required: true,
   },
   dateAdded: {
     type: Date,
     default: Date.now,
+  },
+  boughtBy: {
+    type: Schema.Types.ObjectId,
+    ref: "Supporter",
   },
 });
 

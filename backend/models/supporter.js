@@ -47,6 +47,12 @@ const SupporterSchema = new Schema({
       ref: "Comment",
     },
   ],
+  tickets: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Ticket",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Supporter", SupporterSchema);

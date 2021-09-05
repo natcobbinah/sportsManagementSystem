@@ -51,7 +51,9 @@ router.get(ROUTE_getAllCommentsURL + "/:email", async (req, res) => {
   try {
     const getAllSupporterComments = await Supporter.find({
       email: req.params.email,
-    }).populate("comments");
+    })
+      .populate("comments")
+      .populate("tickets");
     res.json(getAllSupporterComments);
   } catch (err) {
     res.json({
