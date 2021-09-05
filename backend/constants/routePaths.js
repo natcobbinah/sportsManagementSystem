@@ -1,4 +1,6 @@
 const registerURL = "/register";
+const getAllRegisteredUsers = "/getAllRegisteredUsers";
+const deleteRegisteredUser = "/deleteRegisteredUser";
 const loginURL = "/login";
 const createAccountURL = "/createAccount";
 const getAllCoachesURL = "/getAllCoaches";
@@ -28,6 +30,8 @@ const welcomeURL = "/welcome";
 
 module.exports = {
   ROUTE_registerURL: registerURL,
+  ROUTE_getAllRegisteredUsers: getAllRegisteredUsers,
+  ROUTE_deleteRegisteredUser: deleteRegisteredUser,
   ROUTE_loginURL: loginURL,
   ROUTE_createAccountURL: createAccountURL,
   ROUTE_getAllCoachesURL: getAllCoachesURL,
@@ -48,7 +52,6 @@ module.exports = {
   ROUTE_updateCommentURL: updateCommentURL,
   ROUTE_deleteCommentURL: deleteCommentURL,
   ROUTE_getAllCommentsURL: getAllCommentsURL,
-
   ROUTE_addClubTeam: addClubTeam,
   ROUTE_getAllClubTeams: getAllClubTeams,
   ROUTE_deleteClubTeam: deleteClubTeam,

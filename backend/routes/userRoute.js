@@ -9,9 +9,31 @@ const {
   ROUTE_registerURL,
   ROUTE_loginURL,
   ROUTE_welcomeURL,
+  ROUTE_getAllRegisteredUsers,
+  ROUTE_deleteRegisteredUser,
 } = require("../constants/routePaths");
 
 const auth = require("../middleware/authentication");
+
+/**
+ * @swagger
+ * /wall/getAllRegisteredUsers:
+ *  get:
+ *    description: Retrieve all registered users
+ *    responses:
+ *        200:
+ *           description: 'All registered users retrieved successfully'
+ */
+router.get(ROUTE_getAllRegisteredUsers, async (req, res) => {
+  try {
+    const getAllRegisteredUsers = await User.find();
+    res.json(getAllRegisteredUsers);
+  } catch (err) {
+    res.json({
+      message: err,
+    });
+  }
+});
 
 /**
  * @swagger
@@ -43,10 +65,9 @@ const auth = require("../middleware/authentication");
  *                  role:
  *                    type: string
  *                    enum:
- *                         - male
- *                         - female
- *                         - bi-sexual
- *                         - transgender
+ *                         - admin
+ *                         - coach
+ *                         - supporter
  *    responses:
  *        200:
  *           description: 'New user registered successfully'
@@ -155,6 +176,36 @@ router.post(ROUTE_loginURL, async (req, res) => {
     res.status(400).send("Invalid credentials");
   } catch (err) {
     console.log(err);
+  }
+});
+
+/**
+ * @swagger
+ * /wall/deleteRegisteredUser/{id}:
+ *  delete:
+ *    description: delete existing user in the system by Id
+ *    produces:
+ *          application/json
+ *    parameters:
+ *        - in: path
+ *          name: id
+ *          schema:
+ *                type: integer
+ *                required: true
+ *    responses:
+ *        200:
+ *           description: 'User deleted from system successfully'
+ */
+router.delete(ROUTE_deleteRegisteredUser + "/:id", async (req, res) => {
+  try {
+    const deletedUser = await User.findByIdAndDelete({
+      _id: req.params.id,
+    });
+    res.status(200).json(deletedUser);
+  } catch (err) {
+    res.json({
+      message: err,
+    });
   }
 });
 

@@ -1,7 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import Coaches from "./coaches/coaches";
+import Comments from "./comments/comments";
+import Players from "./players/players";
+import Supporters from "./supporters/supporters";
+import Tickets from "./tickets/tickets";
+import Users from "./users/users";
 
-function App() {
+class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <Coaches />
+        <Comments />
+        <Players />
+        <Supporters />
+        <Tickets />
+        <Users />
+      </div>
+    );
+  }
+}
+
+/* function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -20,6 +45,6 @@ function App() {
       </header>
     </div>
   );
-}
+} */
 
 export default App;
