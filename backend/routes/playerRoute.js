@@ -1,13 +1,21 @@
 const express = require("express");
 const router = express.Router();
 require("dotenv").config();
+const { MongoClient } = require("mongodb");
 const Player = require("../models/player");
 const {
   ROUTE_registerPlayerURL,
   ROUTE_getAllPlayers,
   ROUTE_updatePlayer,
   ROUTE_deletePlayer,
+  ROUTE_remoteURI,
 } = require("../constants/routePaths");
+
+//initialize db connectivity options
+const options = {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+};
 
 /**
  * @swagger
@@ -19,13 +27,29 @@ const {
  *           description: 'All team players retrieved successfully'
  */
 router.get(ROUTE_getAllPlayers, async (req, res) => {
-  try {
+  //local connectivity
+  /* try {
     const getAllPlayers = await Player.find();
     res.json(getAllPlayers);
   } catch (err) {
     res.json({
       message: err,
     });
+  } */
+
+  //remote connectivity
+  const client = new MongoClient(ROUTE_remoteURI, options);
+  try {
+    await client.connect();
+    const database = client.db("sms");
+    const collection = database.collection("players");
+    const players = await collection.find({}).toArray();
+    console.log(players);
+    res.json(players);
+  } catch (err) {
+    console.log(err);
+  } finally {
+    await client.close();
   }
 });
 
@@ -124,13 +148,29 @@ router.post(ROUTE_registerPlayerURL, async (req, res) => {
     date: req.body.date,
   });
 
-  try {
+  //local connectivity
+  /* try {
     const sentData = await playerObj.save();
     res.json(sentData);
   } catch (err) {
     res.json({
       message: err,
     });
+  } */
+
+  //remote connectivity
+  const client = new MongoClient(ROUTE_remoteURI, options);
+  try {
+    await client.connect();
+
+    const database = client.db("sms");
+    const collection = database.collection("players");
+    const player = await collection.insertOne(playerObj);
+    return res.json(player);
+  } catch (err) {
+    console.log(err);
+  } finally {
+    await client.close();
   }
 });
 
@@ -235,7 +275,7 @@ router.patch(ROUTE_updatePlayer + "/:id", async (req, res) => {
       date,
     } = req.body;
 
-    const updatedData = await Player.findByIdAndUpdate(
+    /*  const updatedData = await Player.findByIdAndUpdate(
       { _id: req.params.id },
       {
         firstName,
@@ -257,7 +297,43 @@ router.patch(ROUTE_updatePlayer + "/:id", async (req, res) => {
         date,
       }
     );
-    res.json(updatedData);
+    res.json(updatedData); */
+
+    //remote connectivity
+    const client = new MongoClient(ROUTE_remoteURI, options);
+    try {
+      await client.connect();
+
+      const database = client.db("sms");
+      const collection = database.collection("players");
+      const updatedData = await collection.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          firstName,
+          lastName,
+          email,
+          phone,
+          street,
+          nationality,
+          sex,
+          birthdate,
+          city,
+          licenseNotes,
+          educationStatus,
+          mothersName,
+          salary,
+          height,
+          weight,
+          position,
+          date,
+        }
+      );
+      return res.json(updatedData);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      await client.close();
+    }
   } catch (err) {
     res.json({
       message: err,
@@ -283,7 +359,8 @@ router.patch(ROUTE_updatePlayer + "/:id", async (req, res) => {
  *           description: 'Player deleted from system successfully'
  */
 router.delete(ROUTE_deletePlayer + "/:id", async (req, res) => {
-  try {
+  //local connectivity
+  /* try {
     const deletePlayer = await Player.findByIdAndDelete({
       _id: req.params.id,
     });
@@ -292,6 +369,22 @@ router.delete(ROUTE_deletePlayer + "/:id", async (req, res) => {
     res.json({
       message: err,
     });
+  } */
+
+  //remote connectivity
+  const client = new MongoClient(ROUTE_remoteURI, options);
+  try {
+    await client.connect();
+    const database = client.db("sms");
+    const collection = database.collection("players");
+    const deletePlayer = await collection.findOneAndDelete({
+      _id: req.params.id,
+    });
+    res.json(deletePlayer);
+  } catch (err) {
+    console.log(err);
+  } finally {
+    await client.close();
   }
 });
 

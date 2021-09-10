@@ -27,6 +27,8 @@ const getAllClubTeams = "/getAllClubTeams";
 const deleteClubTeam = "/deleteClubTeam";
 const updateClubTeam = "/updateClubTeam";
 const welcomeURL = "/welcome";
+const remoteURI =
+  "mongodb+srv://m001-student:m001-mongodb-basics@sandbox.1ljd7.mongodb.net/sms?authSource=admin";
 
 module.exports = {
   ROUTE_registerURL: registerURL,
@@ -60,4 +62,5 @@ module.exports = {
   ROUTE_welcomeURL: welcomeURL,
   ROUTE_buyTicket: buyTicket,
   ROUTE_addTicket: addTicket,
+  ROUTE_remoteURI: remoteURI,
 };

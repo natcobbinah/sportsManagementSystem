@@ -66,6 +66,6 @@ app.listen(3008, () => {
   console.log("Server running");
 });
 
-mongoose.connect(process.env.DB_URL, options, () => {
+/* mongoose.connect(process.env.DB_URL, options, () => {
   console.log("Connected to mongodb Compass");
-});
+}); */
