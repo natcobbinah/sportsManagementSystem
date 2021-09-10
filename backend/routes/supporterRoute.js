@@ -21,7 +21,9 @@ const Supporter = require("../models/supporter");
  */
 router.get(ROUTE_getAllSupportersURL, async (req, res) => {
   try {
-    const getAllSupporters = await Supporter.find();
+    const getAllSupporters = await Supporter.find()
+      .populate("comments")
+      .populate("tickets");
     res.json(getAllSupporters);
   } catch (err) {
     res.json({

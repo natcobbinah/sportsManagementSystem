@@ -57,19 +57,19 @@ const PlayerSchema = new Schema({
     required: true,
   },
   salary: {
-    type: Number,
+    type: String,
     required: true,
   },
   height: {
-    type: Number,
+    type: String,
     required: true,
   },
   weight: {
-    type: Number,
+    type: String,
     required: true,
   },
   position: {
-    type: Number,
+    type: String,
     required: true,
   },
   date: {

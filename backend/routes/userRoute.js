@@ -82,7 +82,7 @@ router.post(ROUTE_registerURL, async (req, res) => {
 
     //check if all fields are present
     if (!(firstName && lastName && email && password && role)) {
-      res.status(400).send("All fields are required");
+      return res.status(400).send("All fields are required");
     }
 
     //check if user already exists
@@ -115,9 +115,11 @@ router.post(ROUTE_registerURL, async (req, res) => {
     });
 
     //return new user
-    res.status(201).json(newUser);
+    return res.status(201).json(newUser);
   } catch (err) {
-    console.log(err);
+    res.json({
+      message: err,
+    });
   }
 });
 
@@ -151,7 +153,7 @@ router.post(ROUTE_loginURL, async (req, res) => {
 
     //validate user input
     if (!(email && password)) {
-      res.status(400).send("Invalid credentials");
+      return res.status(400).send("Invalid credentials");
     }
 
     //validate if user exist in db
@@ -170,12 +172,13 @@ router.post(ROUTE_loginURL, async (req, res) => {
       //save user token
       user.token = token;
 
-      //save user token
-      res.status(200).json(user);
+      return res.status(200).json(user);
     }
-    res.status(400).send("Invalid credentials");
+    //res.status(400).send("Invalid credentials");
   } catch (err) {
-    console.log(err);
+    res.json({
+      message: err,
+    });
   }
 });
 

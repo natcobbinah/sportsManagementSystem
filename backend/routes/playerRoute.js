@@ -90,11 +90,11 @@ router.get(ROUTE_getAllPlayers, async (req, res) => {
  *                   mothersName:
  *                      type: string
  *                   salary:
- *                      type: number
+ *                      type: string
  *                   height:
- *                      type: number
+ *                      type: string
  *                   weight:
- *                      type: number
+ *                      type: string
  *                   position:
  *                      type: string
  *                   date:
@@ -200,11 +200,11 @@ router.post(ROUTE_registerPlayerURL, async (req, res) => {
  *                   mothersName:
  *                      type: string
  *                   salary:
- *                      type: number
+ *                      type: string
  *                   height:
- *                      type: number
+ *                      type: string
  *                   weight:
- *                      type: number
+ *                      type: string
  *                   position:
  *                      type: string
  *                   date:
