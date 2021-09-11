@@ -11,6 +11,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import Admin from "layouts/Admin.js";
 import Welcome from "./views/welcome";
+import PageFooterContent from "./mainfooter/pageFooterContent";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -19,6 +20,7 @@ ReactDOM.render(
       <Route exact path="/" component={Welcome} />
       {/*   <Redirect from="/" to="/admin/dashboard" /> */}
     </Switch>
+    <PageFooterContent />
   </BrowserRouter>,
   document.getElementById("root")
 );

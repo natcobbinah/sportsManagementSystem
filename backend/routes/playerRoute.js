@@ -44,7 +44,6 @@ router.get(ROUTE_getAllPlayers, async (req, res) => {
     const database = client.db("sms");
     const collection = database.collection("players");
     const players = await collection.find({}).toArray();
-    console.log(players);
     res.json(players);
   } catch (err) {
     console.log(err);

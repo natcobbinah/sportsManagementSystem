@@ -74,100 +74,110 @@ class Users extends Component {
 
   render() {
     const { addUserSuccess, addUserError, show } = this.state;
-    return (
-      <Container fluid>
-        <Row>
-          <Col md="12">
-            {addUserSuccess ? (
-              <Alert
-                show={show}
-                variant="success"
-                onClose={(event) => this.setState({ show: false })}
-                dismissible
-              >
-                <Alert.Heading>User added to system successfully</Alert.Heading>
-              </Alert>
-            ) : null}
+    if (this.props.location.state === undefined) {
+      this.props.history.push("/");
+      return null;
+    } else {
+      return (
+        <Container fluid>
+          <Row>
+            <Col md="12">
+              {addUserSuccess ? (
+                <Alert
+                  show={show}
+                  variant="success"
+                  onClose={(event) => this.setState({ show: false })}
+                  dismissible
+                >
+                  <Alert.Heading>
+                    User added to system successfully
+                  </Alert.Heading>
+                </Alert>
+              ) : null}
 
-            {addUserError ? (
-              <Alert
-                show={show}
-                variant="danger"
-                onClose={(event) => this.setState({ show: false })}
-                dismissible
-              >
-                <Alert.Heading>Error adding user to the System</Alert.Heading>
-                <p>Server might be down: or not available currently</p>
-              </Alert>
-            ) : null}
-            <Card>
-              <Card.Header>
-                <Card.Title as="h4"></Card.Title>
-              </Card.Header>
-              <Card.Body>
-                <Form>
-                  <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridFirstname">
-                      <Form.Label>Firstname</Form.Label>
-                      <Form.Control
-                        type="email"
-                        placeholder="Enter Firstname"
-                        onChange={(e) =>
-                          this.setState({ firstName: e.target.value })
-                        }
-                      />
-                    </Form.Group>
+              {addUserError ? (
+                <Alert
+                  show={show}
+                  variant="danger"
+                  onClose={(event) => this.setState({ show: false })}
+                  dismissible
+                >
+                  <Alert.Heading>Error adding user to the System</Alert.Heading>
+                  <p>Server might be down: or not available currently</p>
+                </Alert>
+              ) : null}
+              <Card>
+                <Card.Header>
+                  <Card.Title as="h4"></Card.Title>
+                </Card.Header>
+                <Card.Body>
+                  <Form>
+                    <Row className="mb-3">
+                      <Form.Group as={Col} controlId="formGridFirstname">
+                        <Form.Label>Firstname</Form.Label>
+                        <Form.Control
+                          type="email"
+                          placeholder="Enter Firstname"
+                          onChange={(e) =>
+                            this.setState({ firstName: e.target.value })
+                          }
+                        />
+                      </Form.Group>
 
-                    <Form.Group as={Col} controlId="formGridLastname">
-                      <Form.Label>Lastname</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Password"
-                        onChange={(e) =>
-                          this.setState({ lastName: e.target.value })
-                        }
-                      />
-                    </Form.Group>
-                  </Row>
+                      <Form.Group as={Col} controlId="formGridLastname">
+                        <Form.Label>Lastname</Form.Label>
+                        <Form.Control
+                          type="text"
+                          placeholder="Password"
+                          onChange={(e) =>
+                            this.setState({ lastName: e.target.value })
+                          }
+                        />
+                      </Form.Group>
+                    </Row>
 
-                  <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridEmail">
-                      <Form.Label>Email</Form.Label>
-                      <Form.Control
-                        type="email"
-                        placeholder="Enter email"
-                        onChange={(e) =>
-                          this.setState({ email: e.target.value })
-                        }
-                      />
+                    <Row className="mb-3">
+                      <Form.Group as={Col} controlId="formGridEmail">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                          type="email"
+                          placeholder="Enter email"
+                          onChange={(e) =>
+                            this.setState({ email: e.target.value })
+                          }
+                        />
 
-                      <Form.Label>Password</Form.Label>
-                      <Form.Control
-                        type="password"
-                        placeholder="Enter password"
-                        onChange={(e) =>
-                          this.setState({ password: e.target.value })
-                        }
-                      />
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                          type="password"
+                          placeholder="Enter password"
+                          onChange={(e) =>
+                            this.setState({ password: e.target.value })
+                          }
+                        />
 
-                      <Form.Label>Role</Form.Label>
-                      <Form.Control as="select" id="roleValue">
-                        <option value="admin">Admin</option>
-                        <option value="coach">Coach</option>
-                        <option value="supporter">Supporter</option>
-                      </Form.Control>
-                    </Form.Group>
-                  </Row>
-                  <Button variant="success" onClick={() => this.addUsertoDB()}>
-                    Add User
-                  </Button>
-                </Form>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    );
+                        <Form.Label>Role</Form.Label>
+                        <Form.Control as="select" id="roleValue">
+                          <option value="admin">Admin</option>
+                          <option value="coach">Coach</option>
+                          <option value="supporter">Supporter</option>
+                        </Form.Control>
+                      </Form.Group>
+                    </Row>
+                    <Button
+                      variant="success"
+                      onClick={() => this.addUsertoDB()}
+                    >
+                      Add User
+                    </Button>
+                  </Form>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      );
+    }
   }
 }
 

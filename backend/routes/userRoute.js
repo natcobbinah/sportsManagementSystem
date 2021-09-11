@@ -26,7 +26,10 @@ const auth = require("../middleware/authentication");
  */
 router.get(ROUTE_getAllRegisteredUsers, async (req, res) => {
   try {
-    const getAllRegisteredUsers = await User.find();
+    const getAllRegisteredUsers = await User.find(
+      {},
+      { token: 0, _id: 0, password: 0 }
+    );
     res.json(getAllRegisteredUsers);
   } catch (err) {
     res.json({
@@ -171,10 +174,9 @@ router.post(ROUTE_loginURL, async (req, res) => {
 
       //save user token
       user.token = token;
-
       return res.status(200).json(user);
     }
-    //res.status(400).send("Invalid credentials");
+    res.status(400).send("Invalid credentials");
   } catch (err) {
     res.json({
       message: err,

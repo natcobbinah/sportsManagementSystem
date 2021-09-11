@@ -12,13 +12,13 @@ import {
   Col,
   Form,
   Modal,
+  Alert,
 } from "react-bootstrap";
 
 import "./welcome.css";
 import {
   registerUser,
   loginUser,
-  getAllRegisteredUsers,
 } from "../httpEndpoints/sportsapiUserRegLoginEndpoints";
 
 const INITIAL_STATE = {
@@ -40,6 +40,9 @@ class Welcome extends Component {
       err: null,
       //modal attributes
       show: false,
+
+      //alert attributes
+      showAlert: true,
     };
 
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
@@ -53,25 +56,19 @@ class Welcome extends Component {
 
   handleLoginSubmit(event) {
     event.preventDefault();
-    const { email, password, errorLogin, successLogin, show } = this.state;
+    const { email, password } = this.state;
     const logindata = {
       email,
       password,
     };
 
     loginUser(logindata)
-      .then((successLogin) =>
-        this.setState({ successLogin: successLogin.data })
-      )
-      .catch((errorLogin) => this.setState({ errorLogin }));
+      .then((result) => this.setState({ successLogin: result.data }))
+      .catch((err) => this.setState({ errorLogin: err }));
 
     this.setState({
       show: false,
     });
-
-    console.log(successLogin);
-    //redirect to main dashboard
-    this.props.history.push("/admin/dashboard");
   }
 
   handleLoginShowModal() {
@@ -86,17 +83,18 @@ class Welcome extends Component {
     });
   }
 
-  componentDidMount() {
-    const { allRegisteredUsers } = this.state;
-    getAllRegisteredUsers()
-      .then((result) => this.setState({ allRegisteredUsers: result.data }))
-      .catch((err) => this.setState(err));
-
-    console.log(allRegisteredUsers);
-  }
+  componentDidMount() {}
 
   render() {
-    const { show, errorLogin, successLogin, email, password } = this.state;
+    const {
+      show,
+      errorLogin,
+      successLogin,
+      email,
+      password,
+      allRegisteredUsers,
+      showAlert,
+    } = this.state;
     return (
       <Container fluid className="sports">
         <Navbar
@@ -110,6 +108,25 @@ class Welcome extends Component {
           <Nav className="mr-auto">
             <Nav.Link href="#home"></Nav.Link>
           </Nav>
+          {errorLogin ? (
+            <Alert
+              show={showAlert}
+              variant="danger"
+              onClose={(event) => this.setState({ showAlert: false })}
+              dismissible
+            >
+              <Alert.Heading>Invalid Credentials: Try Again</Alert.Heading>
+            </Alert>
+          ) : null}
+
+          {successLogin
+            ? //redirect to main dashboard
+              this.props.history.push({
+                pathname: "/admin/dashboard",
+                state: successLogin,
+              })
+            : null}
+
           <Nav>
             <Button
               variant="outline-primary"
@@ -128,8 +145,7 @@ class Welcome extends Component {
           loginSubmit={this.handleLoginSubmit}
           onChange={this.onChange}
         />
-
-        <Row className="my-5 mt-5 pt-5">
+        <Row className="mt-5 pt-5">
           {sportNews.map((news, index) => (
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my-2">
               <div class="hovereffect">

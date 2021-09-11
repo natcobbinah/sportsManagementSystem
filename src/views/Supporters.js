@@ -124,114 +124,119 @@ class Supporters extends Component {
       searchSupporter,
     } = this.state;
     console.log(allSupportersResult);
-    return (
-      <>
-        <Container fluid>
-          <div className="my-3">
-            <InputGroup size="lg">
-              <InputGroup.Prepend>
-                <InputGroup.Text id="inputGroup-sizing-lg">
-                  Search
-                </InputGroup.Text>
-              </InputGroup.Prepend>
-              <FormControl
-                placeholder="Search by supporters name/email/contact"
-                aria-label="Large"
-                aria-describedby="inputGroup-sizing-sm"
-                onChange={(e) =>
-                  this.setState({ searchSupporter: e.target.value })
-                }
-              />
-            </InputGroup>
-          </div>
+    if (this.props.location.state === undefined) {
+      this.props.history.push("/");
+      return null;
+    } else {
+      return (
+        <>
+          <Container fluid>
+            <div className="my-3">
+              <InputGroup size="lg">
+                <InputGroup.Prepend>
+                  <InputGroup.Text id="inputGroup-sizing-lg">
+                    Search
+                  </InputGroup.Text>
+                </InputGroup.Prepend>
+                <FormControl
+                  placeholder="Search by supporters name/email/contact"
+                  aria-label="Large"
+                  aria-describedby="inputGroup-sizing-sm"
+                  onChange={(e) =>
+                    this.setState({ searchSupporter: e.target.value })
+                  }
+                />
+              </InputGroup>
+            </div>
 
-          <ViewSupporterDetails
-            show={this.state.show}
-            handleClose={this.handleCloseModal}
-            supportersData={allSupportersResult}
-            id={id}
-            firstName={firstName}
-            lastName={lastName}
-            email={email}
-            phone={phone}
-            street={street}
-            sex={sex}
-            nationality={nationality}
-            birthdate={birthdate}
-            date={date}
-            comments={comments}
-            tickets={tickets}
-          />
+            <ViewSupporterDetails
+              show={this.state.show}
+              handleClose={this.handleCloseModal}
+              supportersData={allSupportersResult}
+              id={id}
+              firstName={firstName}
+              lastName={lastName}
+              email={email}
+              phone={phone}
+              street={street}
+              sex={sex}
+              nationality={nationality}
+              birthdate={birthdate}
+              date={date}
+              comments={comments}
+              tickets={tickets}
+            />
 
-          <Row>
-            <Col md="12">
-              <Card>
-                <Card.Header>
-                  <Card.Title as="h4"></Card.Title>
-                </Card.Header>
-                <Card.Body>
-                  {allSupportersResult ? (
-                    <Table striped bordered hover>
-                      <thead>
-                        <tr>
-                          <th>Firstname</th>
-                          <th>Lastname</th>
-                          <th>Email</th>
-                          <th>Contact</th>
-                          <th>Street</th>
-                          <th>Sex</th>
-                          <th>Nationality</th>
+            <Row>
+              <Col md="12">
+                <Card>
+                  <Card.Header>
+                    <Card.Title as="h4"></Card.Title>
+                  </Card.Header>
+                  <Card.Body>
+                    {allSupportersResult ? (
+                      <Table striped bordered hover>
+                        <thead>
+                          <tr>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>Street</th>
+                            <th>Sex</th>
+                            <th>Nationality</th>
 
-                          <th>View FullDetails</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {allSupportersResult
-                          .filter(searchForSupporter(searchSupporter))
-                          .map((teamfan) => (
-                            <tr key={teamfan._id}>
-                              <td>{teamfan.firstName}</td>
-                              <td>{teamfan.lastName}</td>
-                              <td>{teamfan.email}</td>
-                              <td>{teamfan.phone}</td>
-                              <td>{teamfan.street}</td>
-                              <td>{teamfan.sex}</td>
-                              <td>{teamfan.nationality}</td>
-                              <td>
-                                <Button
-                                  variant="outline-warning"
-                                  onClick={() =>
-                                    this.handleShowModal(
-                                      teamfan._id,
-                                      teamfan.firstName,
-                                      teamfan.lastName,
-                                      teamfan.email,
-                                      teamfan.phone,
-                                      teamfan.street,
-                                      teamfan.sex,
-                                      teamfan.nationality,
-                                      teamfan.birthdate,
-                                      teamfan.date,
-                                      teamfan.comments,
-                                      teamfan.tickets
-                                    )
-                                  }
-                                >
-                                  View Details
-                                </Button>
-                              </td>
-                            </tr>
-                          ))}
-                      </tbody>
-                    </Table>
-                  ) : null}
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
-      </>
-    );
+                            <th>View FullDetails</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {allSupportersResult
+                            .filter(searchForSupporter(searchSupporter))
+                            .map((teamfan) => (
+                              <tr key={teamfan._id}>
+                                <td>{teamfan.firstName}</td>
+                                <td>{teamfan.lastName}</td>
+                                <td>{teamfan.email}</td>
+                                <td>{teamfan.phone}</td>
+                                <td>{teamfan.street}</td>
+                                <td>{teamfan.sex}</td>
+                                <td>{teamfan.nationality}</td>
+                                <td>
+                                  <Button
+                                    variant="outline-warning"
+                                    onClick={() =>
+                                      this.handleShowModal(
+                                        teamfan._id,
+                                        teamfan.firstName,
+                                        teamfan.lastName,
+                                        teamfan.email,
+                                        teamfan.phone,
+                                        teamfan.street,
+                                        teamfan.sex,
+                                        teamfan.nationality,
+                                        teamfan.birthdate,
+                                        teamfan.date,
+                                        teamfan.comments,
+                                        teamfan.tickets
+                                      )
+                                    }
+                                  >
+                                    View Details
+                                  </Button>
+                                </td>
+                              </tr>
+                            ))}
+                        </tbody>
+                      </Table>
+                    ) : null}
+                  </Card.Body>
+                </Card>
+              </Col>
+            </Row>
+          </Container>
+        </>
+      );
+    }
   }
 }
 

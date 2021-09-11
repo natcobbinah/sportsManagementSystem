@@ -4,7 +4,6 @@ import { useLocation, Route, Switch } from "react-router-dom";
 import AdminNavbar from "components/Navbars/AdminNavbar";
 import Footer from "components/Footer/Footer";
 import Sidebar from "components/Sidebar/Sidebar";
-import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
 
 import routes from "routes.js";
 
@@ -18,10 +17,10 @@ function Admin() {
   const mainPanel = React.useRef(null);
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
-      if (prop.layout === "/admin") {
+      if (prop.layout === "") {
         return (
           <Route
-            path={prop.layout + prop.path}
+            path={prop.path}
             render={(props) => <prop.component {...props} />}
             key={key}
           />
@@ -56,14 +55,6 @@ function Admin() {
           <Footer />
         </div>
       </div>
-      <FixedPlugin
-        hasImage={hasImage}
-        setHasImage={() => setHasImage(!hasImage)}
-        color={color}
-        setColor={(color) => setColor(color)}
-        image={image}
-        setImage={(image) => setImage(image)}
-      />
     </>
   );
 }
