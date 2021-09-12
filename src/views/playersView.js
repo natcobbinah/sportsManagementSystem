@@ -23,6 +23,8 @@ import {
   deletePlayer,
 } from "../httpEndpoints/sportsapiPlayersEndpoints";
 
+import "./loader.css";
+
 const searchForPlayer = (searchPlayer) => (player) =>
   player.firstName.toLowerCase().includes(searchPlayer.toLowerCase()) ||
   player.email.toLowerCase().includes(searchPlayer.toLowerCase()) ||
@@ -274,7 +276,9 @@ class ViewPlayers extends Component {
                             ))}
                         </tbody>
                       </Table>
-                    ) : null}
+                    ) : (
+                      <div className="loader">Loading...</div>
+                    )}
                   </Card.Body>
                 </Card>
               </Col>

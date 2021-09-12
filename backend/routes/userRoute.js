@@ -11,9 +11,12 @@ const {
   ROUTE_welcomeURL,
   ROUTE_getAllRegisteredUsers,
   ROUTE_deleteRegisteredUser,
+  ROUTE_remoteURI,
 } = require("../constants/routePaths");
 
 const auth = require("../middleware/authentication");
+
+const { MongoClient } = require("mongodb");
 
 /**
  * @swagger
@@ -25,6 +28,7 @@ const auth = require("../middleware/authentication");
  *           description: 'All registered users retrieved successfully'
  */
 router.get(ROUTE_getAllRegisteredUsers, async (req, res) => {
+  //local connectivity
   try {
     const getAllRegisteredUsers = await User.find(
       {},
@@ -36,6 +40,20 @@ router.get(ROUTE_getAllRegisteredUsers, async (req, res) => {
       message: err,
     });
   }
+
+  //remote connectivity
+  /*  const client = new MongoClient(ROUTE_remoteURI, options);
+  try {
+    await client.connect();
+    const database = client.db("sms");
+    const collection = database.collection("users");
+    const users = await collection.find({}).toArray();
+    res.json(users);
+  } catch (err) {
+    console.log(err);
+  } finally {
+    await client.close();
+  } */
 });
 
 /**
@@ -108,6 +126,7 @@ router.post(ROUTE_registerURL, async (req, res) => {
     );
 
     //create user in db
+    //local connectivity
     const newUser = await User.create({
       firstName,
       lastName,
@@ -117,6 +136,29 @@ router.post(ROUTE_registerURL, async (req, res) => {
       role,
     });
 
+    /*  //remote connectivity
+    const newUserObj = {
+      firstName,
+      lastName,
+      email: email.toLowerCase(),
+      password: encryptedPassword,
+      token,
+      role,
+    };
+    const client = new MongoClient(ROUTE_remoteURI, options);
+    try {
+      await client.connect();
+
+      const database = client.db("sms");
+      const collection = database.collection("users");
+      const newUser = await collection.insertOne(newUserObj);
+      return res.json(newUser);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      await client.close();
+    }
+ */
     //return new user
     return res.status(201).json(newUser);
   } catch (err) {
