@@ -72,39 +72,39 @@ const sportNews = [
   },
   {
     /* kotokoTrans, */
-    image: mpolo,
+    image: kotokoTrans,
     description:
       "Asante Kotoko complete the transfer of midfielder Richmond Lamptey",
     link: "https://www.ghanaweb.com/GhanaHomePage/SportsArchive/Asante-Kotoko-complete-the-transfer-of-midfielder-Richmond-Lamptey-1353304",
   },
   {
-    image: mpolo, //ckannor,
+    image: ckannor, //ckannor,
     description: "CK Akonnor set to be sacked as Black Starts coach today",
     link: "https://www.ghanaweb.com/GhanaHomePage/SportsArchive/CK-Akonnor-set-to-be-sacked-as-Black-Stars-coach-today-1353298",
   },
   {
-    image: mpolo, //champs,
+    image: champs, //champs,
     description: "CAF take decision on Hearts of Oak champions",
     link: "https://www.ghanaweb.com/GhanaHomePage/soccer/CAF-take-decision-on-Hearts-of-Oak-champions-league-clash-with-Guinean-side-CI-Kamsar-1353277",
   },
   {
-    image: mpolo, //partey,
+    image: partey, //partey,
     description: "Thomas Partey available for selection against Norwick",
     link: "https://www.ghanaweb.com/GhanaHomePage/SportsArchive/Thomas-Partey-available-for-selection-against-Norwich-1352881",
   },
   {
-    image: mpolo, //kappiah,
+    image: kappiah, //kappiah,
     description:
       "The doors are opened if Kwesi Appiah wants to return to Kotoko - Nana Yaw Amponsah",
     link: "https://www.ghanaweb.com/GhanaHomePage/SportsArchive/The-doors-are-opened-if-Kwesi-Appiah-wants-to-return-to-Kotoko-Nana-Yaw-Amponsah-1352644",
   },
   {
-    image: mpolo, //ashgold,
+    image: ashgold, //ashgold,
     description: "AshantiGold to sack assistant coach Thomas Duah - Report",
     link: "https://www.ghanaweb.com/GhanaHomePage/SportsArchive/AshantiGold-to-sack-assistant-coach-Thomas-Duah-Report-1353142",
   },
   {
-    image: mpolo, //vpuye,
+    image: vpuye, //vpuye,
     description:
       "I would have sacked entire Black Stars technical team - Nii Lante",
     link: "https://www.ghanaweb.com/GhanaHomePage/SportsArchive/I-would-have-sacked-entire-Black-Stars-technical-team-Nii-Lante-1352971",
