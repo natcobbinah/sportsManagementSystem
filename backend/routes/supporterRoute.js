@@ -150,7 +150,7 @@ router.post(ROUTE_createAccountURL, async (req, res) => {
     });
 
     //return supporter object
-    res.status(201).json(supporterDetails);
+    res.json(supporterDetails);
   } catch (err) {
     res.json({
       message: err,

@@ -21,9 +21,24 @@ import {
   loginUser,
 } from "../httpEndpoints/sportsapiUserRegLoginEndpoints";
 
+import { createNewSupporterAccount } from "../httpEndpoints/sportsapiSupportersEndpoints";
+
 const INITIAL_STATE = {
   email: "",
   password: "",
+};
+
+const SIGNUP_STATE = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  street: "",
+  nationality: "",
+  birthdate: "",
+  city: "",
+  educationStatus: "",
+  date: "",
 };
 
 import { sportNews } from "../staticdata/staticdata";
@@ -34,23 +49,35 @@ class Welcome extends Component {
 
     this.state = {
       ...INITIAL_STATE,
+      ...SIGNUP_STATE,
       errorLogin: null,
       successLogin: null,
       allRegisteredUsers: [],
       err: null,
+      onRegisterSuccess: null,
+      onError: null,
       //modal attributes
       show: false,
+      showSignUp: false,
 
       //alert attributes
       showAlert: true,
+      showAlertSignup: true,
     };
 
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.handleSignupSubmit = this.handleSignupSubmit.bind(this);
     this.handleLoginShowModal = this.handleLoginShowModal.bind(this);
+    this.handleSignUpShowModal = this.handleSignUpShowModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleCloseSignUpModal = this.handleCloseSignUpModal.bind(this);
   }
 
   onChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  onSignupChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
@@ -71,9 +98,62 @@ class Welcome extends Component {
     });
   }
 
+  handleSignupSubmit(event) {
+    event.preventDefault();
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      street,
+      nationality,
+      birthdate,
+      city,
+      educationStatus,
+      date,
+    } = this.state;
+
+    let sexOrientation = document.getElementById("sexValue").value;
+
+    const supporterData = {
+      firstName,
+      lastName,
+      email,
+      phone,
+      street,
+      nationality,
+      sex: sexOrientation,
+      birthdate,
+      city,
+      educationStatus,
+      date,
+    };
+
+    createNewSupporterAccount(supporterData)
+      .then((success) => this.setState({ onRegisterSuccess: success }))
+      .catch((error) => this.setState({ onError: error }));
+
+    //close signup Modal
+    this.setState({
+      showSignUp: false,
+    });
+  }
+
   handleLoginShowModal() {
     this.setState({
       show: true,
+    });
+  }
+
+  handleSignUpShowModal() {
+    this.setState({
+      showSignUp: true,
+    });
+  }
+
+  handleCloseSignUpModal() {
+    this.setState({
+      showSignUp: false,
     });
   }
 
@@ -94,7 +174,12 @@ class Welcome extends Component {
       password,
       allRegisteredUsers,
       showAlert,
+      showSignUp,
+      onRegisterSuccess,
+      onError,
+      showAlertSignup,
     } = this.state;
+
     return (
       <Container fluid className="sports">
         <Navbar
@@ -127,15 +212,42 @@ class Welcome extends Component {
               })
             : null}
 
+          {/* Registration success and error object */}
+          {onRegisterSuccess ? (
+            <Alert
+              show={showAlertSignup}
+              variant="success"
+              onClose={(event) => this.setState({ showAlertSignup: false })}
+              dismissible
+            >
+              <Alert.Heading>Registered Successfully</Alert.Heading>
+            </Alert>
+          ) : null}
+          {onError ? (
+            <Alert
+              show={showAlertSignup}
+              variant="success"
+              onClose={(event) => this.setState({ showAlertSignup: false })}
+              dismissible
+            >
+              <Alert.Heading>
+                Error during registration: Try Again
+              </Alert.Heading>
+            </Alert>
+          ) : null}
+          {/* end Registration success and error object */}
           <Nav>
             <Button
               variant="outline-primary"
               onClick={this.handleLoginShowModal}
             >
-              Login
+              Login(Admin/Coach)
             </Button>
-            <Button variant="outline-secondary" onClick={() => handleSignUp()}>
-              SignUp
+            <Button
+              variant="outline-secondary"
+              onClick={this.handleSignUpShowModal}
+            >
+              SignUp(TeamFan)
             </Button>
           </Nav>
         </Navbar>
@@ -144,6 +256,12 @@ class Welcome extends Component {
           handleClose={this.handleCloseModal}
           loginSubmit={this.handleLoginSubmit}
           onChange={this.onChange}
+        />
+        <SignUpForm
+          show={showSignUp}
+          handleSignUpClose={this.handleCloseSignUpModal}
+          onChangeSignUp={this.onSignupChange}
+          signUpSubmit={this.handleSignupSubmit}
         />
         <Row className="mt-5 pt-5">
           {sportNews.map((news, index) => (
@@ -206,6 +324,144 @@ const LoginForm = ({ show, handleClose, loginSubmit, onChange }) => {
                 Submit
               </Button>
             </Row>
+          </Form>
+        </Container>
+      </Modal.Body>
+    </Modal>
+  );
+};
+
+const SignUpForm = ({
+  show,
+  handleSignUpClose,
+  signUpSubmit,
+  onChangeSignUp,
+}) => {
+  return (
+    <Modal show={show} onHide={handleSignUpClose} size="lg">
+      <Modal.Header closeButton>
+        <Modal.Title>SIGNUP PAGE</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Container fluid>
+          <Form>
+            <Row className="mb-3">
+              <Form.Group as={Col} controlId="formGridFirstname">
+                <Form.Label>Firstname</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="firstName"
+                  placeholder="Enter Firstname"
+                  onChange={onChangeSignUp}
+                />
+              </Form.Group>
+
+              <Form.Group as={Col} controlId="formGridLastname">
+                <Form.Label>Lastname</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="lastName"
+                  placeholder="surname"
+                  onChange={onChangeSignUp}
+                />
+              </Form.Group>
+            </Row>
+
+            <Row className="mb-3">
+              <Form.Group as={Col} controlId="formGridEmail">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  placeholder="Enter email"
+                  onChange={onChangeSignUp}
+                />
+              </Form.Group>
+
+              <Form.Group as={Col} controlId="formGridPhone">
+                <Form.Label>Phone:</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="phone"
+                  placeholder="024xxxxxx"
+                  onChange={onChangeSignUp}
+                />
+              </Form.Group>
+            </Row>
+
+            <Row className="mb-3">
+              <Form.Group as={Col} controlId="formGridbdate">
+                <Form.Label>Birthdate</Form.Label>
+                <Form.Control
+                  type="date"
+                  name="birthdate"
+                  onChange={onChangeSignUp}
+                />
+              </Form.Group>
+
+              <Form.Group as={Col} controlId="formGrideducation">
+                <Form.Label>Education Level:</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="educationStatus"
+                  placeholder="BSc"
+                  onChange={onChangeSignUp}
+                />
+              </Form.Group>
+            </Row>
+
+            <Row className="mb-3">
+              <Form.Group as={Col} controlId="formGriddateAdd">
+                <Form.Label>Date added:</Form.Label>
+                <Form.Control
+                  type="date"
+                  name="date"
+                  onChange={onChangeSignUp}
+                />
+              </Form.Group>
+
+              <Form.Group as={Col} controlId="formGridStreet">
+                <Form.Label>Street Address</Form.Label>
+                <Form.Control
+                  placeholder="1234 Main St"
+                  name="street"
+                  onChange={onChangeSignUp}
+                />
+              </Form.Group>
+            </Row>
+
+            <Row className="mb-3">
+              <Form.Group as={Col} controlId="formGridNation">
+                <Form.Label>Nationality</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="nationality"
+                  onChange={onChangeSignUp}
+                />
+              </Form.Group>
+
+              <Form.Group as={Col} controlId="formGridCity">
+                <Form.Label>City:</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="city"
+                  onChange={onChangeSignUp}
+                />
+              </Form.Group>
+
+              <Form.Group as={Col} controlId="formGridSex">
+                <Form.Label>Sex:</Form.Label>
+                <Form.Control as="select" id="sexValue">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="transgender">Transgender</option>
+                </Form.Control>
+              </Form.Group>
+            </Row>
+
+            <Button variant="success" onClick={signUpSubmit}>
+              Register Account
+            </Button>
           </Form>
         </Container>
       </Modal.Body>

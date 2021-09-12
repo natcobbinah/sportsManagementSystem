@@ -8,8 +8,8 @@ function getAllSupporterCommentsByEmail(email) {
   return axiosinstance.get(`/supporters/getAllComments/${email}`);
 }
 
-function createNewSupporterAccount() {
-  return axiosinstance.post("/supporters/createAccount");
+function createNewSupporterAccount(supporterData) {
+  return axiosinstance.post("/supporters/createAccount", supporterData);
 }
 
 function updateSupporterAccount(id) {

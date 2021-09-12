@@ -186,47 +186,6 @@ class Coaches extends Component {
                       </Form.Group>
                     </Row>
 
-                    <Form.Group className="mb-3" controlId="formGridStreet">
-                      <Form.Label>Street Address</Form.Label>
-                      <Form.Control
-                        placeholder="1234 Main St"
-                        onChange={(e) =>
-                          this.setState({ street: e.target.value })
-                        }
-                      />
-                    </Form.Group>
-
-                    <Row className="mb-3">
-                      <Form.Group as={Col} controlId="formGridNation">
-                        <Form.Label>Nationality</Form.Label>
-                        <Form.Control
-                          type="text"
-                          onChange={(e) =>
-                            this.setState({ nationality: e.target.value })
-                          }
-                        />
-                      </Form.Group>
-
-                      <Form.Group as={Col} controlId="formGridCity">
-                        <Form.Label>City:</Form.Label>
-                        <Form.Control
-                          type="text"
-                          onChange={(e) =>
-                            this.setState({ city: e.target.value })
-                          }
-                        />
-                      </Form.Group>
-
-                      <Form.Group as={Col} controlId="formGridSex">
-                        <Form.Label>Sex:</Form.Label>
-                        <Form.Control as="select" id="sexValue">
-                          <option value="male">Male</option>
-                          <option value="female">Female</option>
-                          <option value="transgender">Transgender</option>
-                        </Form.Control>
-                      </Form.Group>
-                    </Row>
-
                     <Row className="mb-3">
                       <Form.Group as={Col} controlId="formGridbdate">
                         <Form.Label>Birthdate</Form.Label>
@@ -270,6 +229,47 @@ class Coaches extends Component {
                             this.setState({ date: e.target.value })
                           }
                         />
+                      </Form.Group>
+                    </Row>
+
+                    <Form.Group className="mb-3" controlId="formGridStreet">
+                      <Form.Label>Street Address</Form.Label>
+                      <Form.Control
+                        placeholder="1234 Main St"
+                        onChange={(e) =>
+                          this.setState({ street: e.target.value })
+                        }
+                      />
+                    </Form.Group>
+
+                    <Row className="mb-3">
+                      <Form.Group as={Col} controlId="formGridNation">
+                        <Form.Label>Nationality</Form.Label>
+                        <Form.Control
+                          type="text"
+                          onChange={(e) =>
+                            this.setState({ nationality: e.target.value })
+                          }
+                        />
+                      </Form.Group>
+
+                      <Form.Group as={Col} controlId="formGridCity">
+                        <Form.Label>City:</Form.Label>
+                        <Form.Control
+                          type="text"
+                          onChange={(e) =>
+                            this.setState({ city: e.target.value })
+                          }
+                        />
+                      </Form.Group>
+
+                      <Form.Group as={Col} controlId="formGridSex">
+                        <Form.Label>Sex:</Form.Label>
+                        <Form.Control as="select" id="sexValue">
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                          <option value="transgender">Transgender</option>
+                        </Form.Control>
                       </Form.Group>
                     </Row>
 

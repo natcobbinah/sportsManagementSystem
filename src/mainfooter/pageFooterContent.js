@@ -12,10 +12,18 @@ const PageFooterContent = () => {
       <Row>
         <Col className="mt-4 pt-4" md={3}></Col>
         <Col className="mt-3 pt-3 text-center font-weight-bold" md={6}>
-          <Icon.Whatsapp size={56} className="mr-4" color="green" />
-          <Icon.Facebook size={56} className="mr-4" color="blue" />
-          <Icon.Twitter size={56} className="mr-4" color="royalblue" />
-          <Icon.Twitch size={56} className="mr-4" color="red" />
+          <div className="icon mr-4">
+            <Icon.Whatsapp size={50} className="my-2" color="green" />
+          </div>
+          <div className="icon mr-4">
+            <Icon.Facebook size={50} className="my-2" color="blue" />
+          </div>
+          <div className="icon mr-4">
+            <Icon.Twitter size={50} className="my-2" color="royalblue" />
+          </div>
+          <div className="icon mr-4">
+            <Icon.Twitch size={50} className="my-2" color="red" />
+          </div>
         </Col>
         <Col className="mt-4 pt-4" md={3}></Col>
       </Row>

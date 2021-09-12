@@ -28,7 +28,7 @@ router.get(ROUTE_getAllRegisteredUsers, async (req, res) => {
   try {
     const getAllRegisteredUsers = await User.find(
       {},
-      { token: 0, _id: 0, password: 0 }
+      { token: 0, password: 0 }
     );
     res.json(getAllRegisteredUsers);
   } catch (err) {

@@ -7,14 +7,6 @@ import routes from "routes.js";
 class Header extends Component {
   constructor(props) {
     super(props);
-
-    this.logout = this.logout.bind(this);
-  }
-
-  logout() {
-    if (this.props.location === undefined) {
-      this.props.history.push("/");
-    }
   }
 
   render() {
@@ -73,15 +65,7 @@ class Header extends Component {
                   className="m-0"
                   href="#pablo"
                   onClick={(e) => e.preventDefault()}
-                >
-                  <button
-                    type="button"
-                    class="btn btn-primary"
-                    onClick={this.logout}
-                  >
-                    Log out
-                  </button>
-                </Nav.Link>
+                ></Nav.Link>
               </Nav.Item>
             </Nav>
           </Navbar.Collapse>

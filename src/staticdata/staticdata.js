@@ -31,6 +31,7 @@ import partey from "../assets/img/partey.jpg";
 import kappiah from "../assets/img/kappiah.jpg";
 import ashgold from "../assets/img/ashgold.jpg";
 import vpuye from "../assets/img/vpuye.jpg";
+import fabio from "../assets/img/fabio.jfif";
 
 const teamsLogos = [
   { logo: accraLions },
@@ -70,39 +71,40 @@ const sportNews = [
     link: "https://www.ghanaweb.com/GhanaHomePage/SportsArchive/Mohammed-Polo-disagrees-with-calls-for-CK-Akonnor-s-sacking-1353283",
   },
   {
-    image: kotokoTrans,
+    /* kotokoTrans, */
+    image: mpolo,
     description:
       "Asante Kotoko complete the transfer of midfielder Richmond Lamptey",
     link: "https://www.ghanaweb.com/GhanaHomePage/SportsArchive/Asante-Kotoko-complete-the-transfer-of-midfielder-Richmond-Lamptey-1353304",
   },
   {
-    image: ckannor,
+    image: mpolo, //ckannor,
     description: "CK Akonnor set to be sacked as Black Starts coach today",
     link: "https://www.ghanaweb.com/GhanaHomePage/SportsArchive/CK-Akonnor-set-to-be-sacked-as-Black-Stars-coach-today-1353298",
   },
   {
-    image: champs,
+    image: mpolo, //champs,
     description: "CAF take decision on Hearts of Oak champions",
     link: "https://www.ghanaweb.com/GhanaHomePage/soccer/CAF-take-decision-on-Hearts-of-Oak-champions-league-clash-with-Guinean-side-CI-Kamsar-1353277",
   },
   {
-    image: partey,
+    image: mpolo, //partey,
     description: "Thomas Partey available for selection against Norwick",
     link: "https://www.ghanaweb.com/GhanaHomePage/SportsArchive/Thomas-Partey-available-for-selection-against-Norwich-1352881",
   },
   {
-    image: kappiah,
+    image: mpolo, //kappiah,
     description:
       "The doors are opened if Kwesi Appiah wants to return to Kotoko - Nana Yaw Amponsah",
     link: "https://www.ghanaweb.com/GhanaHomePage/SportsArchive/The-doors-are-opened-if-Kwesi-Appiah-wants-to-return-to-Kotoko-Nana-Yaw-Amponsah-1352644",
   },
   {
-    image: ashgold,
+    image: mpolo, //ashgold,
     description: "AshantiGold to sack assistant coach Thomas Duah - Report",
     link: "https://www.ghanaweb.com/GhanaHomePage/SportsArchive/AshantiGold-to-sack-assistant-coach-Thomas-Duah-Report-1353142",
   },
   {
-    image: vpuye,
+    image: mpolo, //vpuye,
     description:
       "I would have sacked entire Black Stars technical team - Nii Lante",
     link: "https://www.ghanaweb.com/GhanaHomePage/SportsArchive/I-would-have-sacked-entire-Black-Stars-technical-team-Nii-Lante-1352971",

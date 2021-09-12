@@ -3,7 +3,6 @@ import Supporters from "views/Supporters";
 import Players from "views/players";
 import Coaches from "views/coach";
 import Teams from "views/Teams";
-import Tickets from "views/tickets";
 import Users from "views/users";
 import ViewPlayers from "views/playersView";
 
@@ -11,57 +10,56 @@ const dashboardRoutes = [
   {
     path: "/admin/dashboard",
     name: "DASHBOARD",
-    icon: "nc-icon nc-chart-pie-35",
+    icon: "nc-icon nc-settings-gear-64",
     component: Dashboard,
+    layout: "",
+  },
+  {
+    path: "/admin/users",
+    name: "USERS",
+    icon: "nc-icon nc-circle-09",
+    component: Users,
     layout: "",
   },
   {
     path: "/admin/supporters",
     name: "TEAM SUPPORTERS",
-    icon: "nc-icon nc-circle-09",
+    icon: "nc-icon nc-grid-45",
     component: Supporters,
     layout: "",
   },
   {
     path: "/admin/players",
     name: "ADD PLAYERS",
-    icon: "nc-icon nc-notes",
+    icon: "nc-icon nc-single-02",
     component: Players,
     layout: "",
   },
   {
     path: "/admin/viewplayers",
     name: "VIEW PLAYERS",
-    icon: "nc-icon nc-notes",
+    icon: "nc-icon nc-puzzle-10",
     component: ViewPlayers,
     layout: "",
   },
   {
     path: "/admin/coaches",
     name: "COACHES",
-    icon: "nc-icon nc-paper-2",
+    icon: "nc-icon nc-badge",
     component: Coaches,
     layout: "",
   },
   {
     path: "/admin/teams",
     name: "TEAMS",
-    icon: "nc-icon nc-atom",
+    icon: "nc-icon  nc-album-2",
     component: Teams,
     layout: "",
   },
   {
-    path: "/admin/tickets",
-    name: "TICKETS",
-    icon: "nc-icon nc-bell-55",
-    component: Tickets,
-    layout: "",
-  },
-  {
-    path: "/admin/users",
-    name: "USERS",
-    icon: "nc-icon nc-bell-55",
-    component: Users,
+    path: "/",
+    name: "LOGOUT",
+    icon: "nc-icon  nc-delivery-fast",
     layout: "",
   },
 ];

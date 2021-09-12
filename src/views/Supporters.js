@@ -25,6 +25,7 @@ import {
 } from "../httpEndpoints/sportsapiSupportersEndpoints";
 
 import ViewSupporterDetails from "./supportersEditModal";
+import * as Icon from "react-bootstrap-icons";
 
 const searchForSupporter = (searchSupporter) => (supporter) =>
   supporter.firstName.toLowerCase().includes(searchSupporter.toLowerCase()) ||
@@ -185,7 +186,6 @@ class Supporters extends Component {
                             <th>Street</th>
                             <th>Sex</th>
                             <th>Nationality</th>
-
                             <th>View FullDetails</th>
                           </tr>
                         </thead>
@@ -221,7 +221,7 @@ class Supporters extends Component {
                                       )
                                     }
                                   >
-                                    View Details
+                                    <Icon.Book size={25} color="blue" />
                                   </Button>
                                 </td>
                               </tr>

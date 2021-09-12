@@ -208,6 +208,52 @@ class Players extends Component {
                         </Form.Group>
                       </Row>
 
+                      <Row className="mb-3">
+                        <Form.Group as={Col} controlId="formGridbdate">
+                          <Form.Label>Birthdate</Form.Label>
+                          <Form.Control
+                            type="date"
+                            onChange={(e) =>
+                              this.setState({ birthdate: e.target.value })
+                            }
+                          />
+                        </Form.Group>
+
+                        <Form.Group as={Col} controlId="formGrideducation">
+                          <Form.Label>Education Level:</Form.Label>
+                          <Form.Control
+                            type="text"
+                            placeholder="BSc"
+                            onChange={(e) =>
+                              this.setState({ educationStatus: e.target.value })
+                            }
+                          />
+                        </Form.Group>
+                      </Row>
+
+                      <Row className="mb-3">
+                        <Form.Group as={Col} controlId="formGridSalary">
+                          <Form.Label>Salary</Form.Label>
+                          <Form.Control
+                            type="text"
+                            placeholder="123xxx"
+                            onChange={(e) =>
+                              this.setState({ salary: e.target.value })
+                            }
+                          />
+                        </Form.Group>
+
+                        <Form.Group as={Col} controlId="formGriddateAdd">
+                          <Form.Label>Date added:</Form.Label>
+                          <Form.Control
+                            type="date"
+                            onChange={(e) =>
+                              this.setState({ date: e.target.value })
+                            }
+                          />
+                        </Form.Group>
+                      </Row>
+
                       <Row>
                         <Form.Group as={Col}>
                           <Form.Label>Street Address</Form.Label>
@@ -268,52 +314,6 @@ class Players extends Component {
                             <option value="female">Female</option>
                             <option value="transgender">Transgender</option>
                           </Form.Control>
-                        </Form.Group>
-                      </Row>
-
-                      <Row className="mb-3">
-                        <Form.Group as={Col} controlId="formGridbdate">
-                          <Form.Label>Birthdate</Form.Label>
-                          <Form.Control
-                            type="date"
-                            onChange={(e) =>
-                              this.setState({ birthdate: e.target.value })
-                            }
-                          />
-                        </Form.Group>
-
-                        <Form.Group as={Col} controlId="formGrideducation">
-                          <Form.Label>Education Level:</Form.Label>
-                          <Form.Control
-                            type="text"
-                            placeholder="BSc"
-                            onChange={(e) =>
-                              this.setState({ educationStatus: e.target.value })
-                            }
-                          />
-                        </Form.Group>
-                      </Row>
-
-                      <Row className="mb-3">
-                        <Form.Group as={Col} controlId="formGridSalary">
-                          <Form.Label>Salary</Form.Label>
-                          <Form.Control
-                            type="text"
-                            placeholder="123xxx"
-                            onChange={(e) =>
-                              this.setState({ salary: e.target.value })
-                            }
-                          />
-                        </Form.Group>
-
-                        <Form.Group as={Col} controlId="formGriddateAdd">
-                          <Form.Label>Date added:</Form.Label>
-                          <Form.Control
-                            type="date"
-                            onChange={(e) =>
-                              this.setState({ date: e.target.value })
-                            }
-                          />
                         </Form.Group>
                       </Row>
 

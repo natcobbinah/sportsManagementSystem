@@ -203,78 +203,81 @@ class ViewPlayers extends Component {
                 />
               </InputGroup>
             </div>
+
             <Row>
-              <Card>
-                <Card.Header>
-                  <Card.Title as="h4"></Card.Title>
-                </Card.Header>
-                <Card.Body>
-                  {allPlayersResult ? (
-                    <Table striped bordered hover>
-                      <thead>
-                        <tr>
-                          <th>Firstname</th>
-                          <th>Lastname</th>
-                          <th>Email</th>
-                          <th>Contact</th>
-                          <th>Sex</th>
-                          <th>Salary</th>
-                          <th>Height</th>
-                          <th>Weight</th>
-                          <th>Position</th>
-                          <th>Edit Info</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {allPlayersResult
-                          .filter(searchForPlayer(searchPlayer))
-                          .map((player) => (
-                            <tr key={player._id}>
-                              <td>{player.firstName}</td>
-                              <td>{player.lastName}</td>
-                              <td>{player.email}</td>
-                              <td>{player.phone}</td>
-                              <td>{player.sex}</td>
-                              <td>{player.salary}</td>
-                              <td>{player.height}</td>
-                              <td>{player.weight}</td>
-                              <td>{player.position}</td>
-                              <td>
-                                <Button
-                                  variant="outline-warning"
-                                  onClick={() =>
-                                    this.handleShowModal(
-                                      player._id,
-                                      player.firstName,
-                                      player.lastName,
-                                      player.email,
-                                      player.phone,
-                                      player.street,
-                                      player.nationality,
-                                      player.sex,
-                                      player.birthdate,
-                                      player.city,
-                                      player.licenseNotes,
-                                      player.educationStatus,
-                                      player.mothersName,
-                                      player.salary,
-                                      player.height,
-                                      player.weight,
-                                      player.position,
-                                      player.date
-                                    )
-                                  }
-                                >
-                                  Edit
-                                </Button>
-                              </td>
-                            </tr>
-                          ))}
-                      </tbody>
-                    </Table>
-                  ) : null}
-                </Card.Body>
-              </Card>
+              <Col md="12">
+                <Card>
+                  <Card.Header>
+                    <Card.Title as="h4"></Card.Title>
+                  </Card.Header>
+                  <Card.Body>
+                    {allPlayersResult ? (
+                      <Table striped bordered hover>
+                        <thead>
+                          <tr>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>Sex</th>
+                            <th>Salary</th>
+                            <th>Height</th>
+                            <th>Weight</th>
+                            <th>Position</th>
+                            <th>Edit Info</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {allPlayersResult
+                            .filter(searchForPlayer(searchPlayer))
+                            .map((player) => (
+                              <tr key={player._id}>
+                                <td>{player.firstName}</td>
+                                <td>{player.lastName}</td>
+                                <td>{player.email}</td>
+                                <td>{player.phone}</td>
+                                <td>{player.sex}</td>
+                                <td>{player.salary}</td>
+                                <td>{player.height}</td>
+                                <td>{player.weight}</td>
+                                <td>{player.position}</td>
+                                <td>
+                                  <Button
+                                    variant="outline-warning"
+                                    onClick={() =>
+                                      this.handleShowModal(
+                                        player._id,
+                                        player.firstName,
+                                        player.lastName,
+                                        player.email,
+                                        player.phone,
+                                        player.street,
+                                        player.nationality,
+                                        player.sex,
+                                        player.birthdate,
+                                        player.city,
+                                        player.licenseNotes,
+                                        player.educationStatus,
+                                        player.mothersName,
+                                        player.salary,
+                                        player.height,
+                                        player.weight,
+                                        player.position,
+                                        player.date
+                                      )
+                                    }
+                                  >
+                                    Edit
+                                  </Button>
+                                </td>
+                              </tr>
+                            ))}
+                        </tbody>
+                      </Table>
+                    ) : null}
+                  </Card.Body>
+                </Card>
+              </Col>
             </Row>
             {/*  <PlayerEditModal
             show={show}

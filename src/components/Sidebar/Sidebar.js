@@ -4,6 +4,7 @@ import { useLocation, NavLink } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 
 import logo from "assets/img/reactlogo.png";
+import * as Icon from "react-bootstrap-icons";
 
 function Sidebar({ color, image, routes }) {
   const location = useLocation();
@@ -20,15 +21,13 @@ function Sidebar({ color, image, routes }) {
       />
       <div className="sidebar-wrapper">
         <div className="logo d-flex align-items-center justify-content-start">
-          <a
-            href="https://www.creative-tim.com?ref=lbd-sidebar"
-            className="simple-text logo-mini mx-1"
-          >
+          <a href="#" className="simple-text logo-mini mx-1">
             <div className="logo-img">
-              <img
+              {/* <img
                 src={require("assets/img/reactlogo.png").default}
                 alt="..."
-              />
+              /> */}
+              <Icon.Binoculars size={50} color="white" />
             </div>
           </a>
           <a className="simple-text" href="#">
