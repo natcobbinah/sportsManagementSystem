@@ -22,6 +22,10 @@ const playGroundSchema = new Schema({
     type: String,
     required: true,
   },
+  fixtures: {
+    type: Schema.Types.ObjectId,
+    ref: "Fixtures",
+  },
 });
 
 module.exports = mongoose.model("playGround", playGroundSchema);

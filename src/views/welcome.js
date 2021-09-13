@@ -189,9 +189,9 @@ class Welcome extends Component {
           variant="dark"
           fixed="top"
         >
-          <Navbar.Brand href="#home">SPMS</Navbar.Brand>
-          <Nav className="mr-auto">
-            <Nav.Link href="#home"></Nav.Link>
+          <Navbar.Brand href="/">SPMS</Navbar.Brand>
+          <Nav className="mr-auto ml-5">
+            <Nav.Link href="/fixtures">Fixtures</Nav.Link>
           </Nav>
           {errorLogin ? (
             <Alert

@@ -10,6 +10,8 @@ const supportersRoute = require("./routes/supporterRoute");
 const ticketsRoute = require("./routes/ticketsRoute");
 const commentsRoute = require("./routes/commentRoute");
 const clubTeamRoute = require("./routes/clubTeamRoute");
+const fixturesRoute = require("./routes/fixturesRoute");
+const playGroundRoute = require("./routes/playGroundRoute");
 
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUI = require("swagger-ui-express");
@@ -60,6 +62,8 @@ app.use("/supporters", supportersRoute);
 app.use("/tickets", ticketsRoute);
 app.use("/comments", commentsRoute);
 app.use("/clubTeam", clubTeamRoute);
+app.use("/fixture", fixturesRoute);
+app.use("/playGround", playGroundRoute);
 app.use("/sportsapi", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 app.listen(3008, () => {

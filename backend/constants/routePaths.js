@@ -29,6 +29,16 @@ const updateClubTeam = "/updateClubTeam";
 const welcomeURL = "/welcome";
 const remoteURI =
   "mongodb+srv://m001-student:m001-mongodb-basics@sandbox.1ljd7.mongodb.net/sms?authSource=admin";
+const addFixtures = "/addFixtures";
+const getFixtures = "/getFixtures";
+const updateFixtures = "/updateFixtures";
+const deleteFixture = "/deleteFixture";
+
+const addPlayGround = "/addPlayGround";
+const getPlayGround = "/getPlayGround";
+const getPlayGroundFixtures = "/getPlayGround/fixtures";
+const updatePlayGround = "/updatePlayGround";
+const deletePlayground = "/deletePlayground";
 
 module.exports = {
   ROUTE_registerURL: registerURL,
@@ -58,9 +68,17 @@ module.exports = {
   ROUTE_getAllClubTeams: getAllClubTeams,
   ROUTE_deleteClubTeam: deleteClubTeam,
   ROUTE_updateClubTeam: updateClubTeam,
-
   ROUTE_welcomeURL: welcomeURL,
   ROUTE_buyTicket: buyTicket,
   ROUTE_addTicket: addTicket,
   ROUTE_remoteURI: remoteURI,
+  ROUTE_addFixtures: addFixtures,
+  ROUTE_getFixtures: getFixtures,
+  ROUTE_updateFixtures: updateFixtures,
+  ROUTE_deleteFixture: deleteFixture,
+  ROUTE_addPlayGround: addPlayGround,
+  ROUTE_getPlayGround: getPlayGround,
+  ROUTE_getPlayGroundFixtures: getPlayGroundFixtures,
+  ROUTE_updatePlayGround: updatePlayGround,
+  ROUTE_deletePlayground: deletePlayground,
 };

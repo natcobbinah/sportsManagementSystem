@@ -12,12 +12,14 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import Admin from "layouts/Admin.js";
 import Welcome from "./views/welcome";
 import PageFooterContent from "./mainfooter/pageFooterContent";
+import Fixtures from "./views/fixtures";
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Route path="/admin" render={(props) => <Admin {...props} />} />
       <Route exact path="/" component={Welcome} />
+      <Route exact path="/fixtures" component={Fixtures} />
       {/*   <Redirect from="/" to="/admin/dashboard" /> */}
     </Switch>
     <PageFooterContent />
