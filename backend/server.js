@@ -66,7 +66,7 @@ app.use("/fixture", fixturesRoute);
 app.use("/playGround", playGroundRoute);
 app.use("/sportsapi", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
-app.listen(3008, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("Server running");
 });
 
