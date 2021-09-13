@@ -267,7 +267,13 @@ class Welcome extends Component {
           {sportNews.map((news, index) => (
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 my-2">
               <div class="hovereffect">
-                <img class="img-responsive" src={news.image} alt="" />
+                <img
+                  class="img-responsive"
+                  src={news.image}
+                  alt=""
+                  width="1050"
+                  height="350"
+                />
                 <div class="overlay">
                   <h2>{news.description}</h2>
                   <p>
