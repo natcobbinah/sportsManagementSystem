@@ -8,12 +8,12 @@ function addNewFixture(data) {
   return axiosinstance.post("/fixture/addFixtures", data);
 }
 
-function updateFixture(id) {
-  return axiosinstance.patch(`/fixture/updateFixtures/${id}`);
+function updateFixture(id, data) {
+  return axiosinstance.patch(`/fixture/updateFixtures/${id}`, data);
 }
 
-function deleteCoachFixture(id) {
+function deleteFixture(id) {
   return axiosinstance.delete(`/fixture/deleteFixture/${id}`);
 }
 
-export { getAllFixtures, addNewFixture, updateFixture, deleteCoachFixture };
+export { getAllFixtures, addNewFixture, updateFixture, deleteFixture };

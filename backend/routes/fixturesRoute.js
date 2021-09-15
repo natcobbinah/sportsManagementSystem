@@ -51,6 +51,8 @@ router.get(ROUTE_getFixtures, async (req, res) => {
  *                  - city
  *                  - winner
  *                  - looser
+ *                  - draw
+ *                  - foul
  *              properties:
  *                   teamOne:
  *                      type: string
@@ -61,7 +63,7 @@ router.get(ROUTE_getFixtures, async (req, res) => {
  *                   playatTimeDate:
  *                      type: string
  *                   postPoned:
- *                      type: string
+ *                      type: boolean
  *                   playGround:
  *                      type: string
  *                   city:
@@ -69,6 +71,10 @@ router.get(ROUTE_getFixtures, async (req, res) => {
  *                   winner:
  *                      type: string
  *                   looser:
+ *                      type: string
+ *                   draw:
+ *                      type: string
+ *                   foul:
  *                      type: string
  *    responses:
  *        200:
@@ -86,6 +92,8 @@ router.post(ROUTE_addFixtures, async (req, res) => {
       city,
       winner,
       looser,
+      draw,
+      foul,
     } = req.body;
 
     //create fixture
@@ -99,6 +107,8 @@ router.post(ROUTE_addFixtures, async (req, res) => {
       city,
       winner,
       looser,
+      draw,
+      foul,
     });
 
     //return fixture object
@@ -137,6 +147,8 @@ router.post(ROUTE_addFixtures, async (req, res) => {
  *                  - city
  *                  - winner
  *                  - looser
+ *                  - draw
+ *                  - foul
  *              properties:
  *                   teamOne:
  *                      type: string
@@ -147,7 +159,7 @@ router.post(ROUTE_addFixtures, async (req, res) => {
  *                   playatTimeDate:
  *                      type: string
  *                   postPoned:
- *                      type: string
+ *                      type: boolean
  *                   playGround:
  *                      type: string
  *                   city:
@@ -155,6 +167,10 @@ router.post(ROUTE_addFixtures, async (req, res) => {
  *                   winner:
  *                      type: string
  *                   looser:
+ *                      type: string
+ *                   draw:
+ *                      type: string
+ *                   foul:
  *                      type: string
  *     responses:
  *        200:
@@ -172,6 +188,8 @@ router.patch(ROUTE_updateFixtures + "/:id", async (req, res) => {
       city,
       winner,
       looser,
+      draw,
+      foul,
     } = req.body;
 
     //update fixture details
@@ -187,6 +205,12 @@ router.patch(ROUTE_updateFixtures + "/:id", async (req, res) => {
         city,
         winner,
         looser,
+        draw,
+        $push: {
+          fouls: {
+            foulType: foul,
+          },
+        },
       }
     );
 

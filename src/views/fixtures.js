@@ -32,6 +32,7 @@ class Fixtures extends Component {
 
   render() {
     const { allFixturesResult } = this.state;
+    console.log(allFixturesResult);
     return (
       <>
         <Container fluid>
@@ -43,7 +44,7 @@ class Fixtures extends Component {
                 </Card.Header>
                 <Card.Body className="table-full-width table-responsive px-0">
                   {allFixturesResult ? (
-                    <Table className="table-hover table-striped">
+                    <Table className="table-hover table-striped responsive">
                       <thead>
                         <tr>
                           <th className="border-0">Home Team</th>
@@ -51,22 +52,38 @@ class Fixtures extends Component {
                           <th className="border-0">Away Team</th>
                           <th className="border-0">Winner</th>
                           <th className="border-0">Looser</th>
+                          <th className="border-0">Draw</th>
                           <th className="border-0">PlayGround</th>
                           <th className="border-0">Match Date</th>
                           <th className="border-0">PostPoned</th>
+                          <th className="border-0">Fouls</th>
                         </tr>
                       </thead>
                       <tbody>
                         {allFixturesResult.map((fixture) => (
-                          <tr id={fixture.key}>
+                          <tr key={fixture._id}>
                             <td>{fixture.teamOne}</td>
                             <td>{fixture.scores}</td>
                             <td>{fixture.teamTwo}</td>
                             <td>{fixture.winner}</td>
                             <td>{fixture.looser}</td>
+                            <td>{fixture.draw}</td>
                             <td>{fixture.playGround}</td>
                             <td>{fixture.playatTimeDate}</td>
                             <td>{fixture.postPoned}</td>
+                            <td>
+                              {fixture.fouls ? (
+                                fixture.fouls.map((foul, index) => (
+                                  <tr key={foul._id}>
+                                    <td>
+                                      {index} - {foul.foulType}
+                                    </td>
+                                  </tr>
+                                ))
+                              ) : (
+                                <p>nothing here</p>
+                              )}
+                            </td>
                           </tr>
                         ))}
                       </tbody>

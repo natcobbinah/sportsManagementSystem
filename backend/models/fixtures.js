@@ -4,39 +4,48 @@ const { Schema } = mongoose;
 const FixturesSchema = new Schema({
   teamOne: {
     type: String,
-    required: true,
+    required: false,
   },
   teamTwo: {
     type: String,
-    required: true,
+    required: false,
   },
   scores: {
     type: String,
   },
   playatTimeDate: {
     type: Date,
-    required: true,
+    required: false,
   },
   postPoned: {
     type: Boolean,
-    required: true,
+    required: false,
   },
   playGround: {
     type: String,
-    required: true,
+    required: false,
   },
   city: {
     type: String,
-    required: true,
+    required: false,
   },
   winner: {
     type: String,
-    required: true,
+    required: false,
   },
   looser: {
     type: String,
-    required: true,
+    required: false,
   },
+  draw: {
+    type: String,
+    required: false,
+  },
+  fouls: [
+    {
+      foulType: String,
+    },
+  ],
 });
 
 module.exports = mongoose.model("Fixtures", FixturesSchema);
