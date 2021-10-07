@@ -190,8 +190,11 @@ class Welcome extends Component {
           fixed="top"
         >
           <Navbar.Brand href="/">SPMS</Navbar.Brand>
-          <Nav className="mr-auto ml-5">
+          <Nav className="ml-5">
             <Nav.Link href="/fixtures">Fixtures</Nav.Link>
+          </Nav>
+          <Nav className="mr-auto">
+            <Nav.Link href="/teamStats">Teams-Statistics</Nav.Link>
           </Nav>
           {errorLogin ? (
             <Alert
@@ -203,7 +206,6 @@ class Welcome extends Component {
               <Alert.Heading>Invalid Credentials: Try Again</Alert.Heading>
             </Alert>
           ) : null}
-
           {successLogin
             ? //redirect to main dashboard
               this.props.history.push({
@@ -211,7 +213,6 @@ class Welcome extends Component {
                 state: successLogin,
               })
             : null}
-
           {/* Registration success and error object */}
           {onRegisterSuccess ? (
             <Alert

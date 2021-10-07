@@ -13,6 +13,7 @@ import Admin from "layouts/Admin.js";
 import Welcome from "./views/welcome";
 import PageFooterContent from "./mainfooter/pageFooterContent";
 import Fixtures from "./views/fixtures";
+import TeamStatistics from "./views/teamStatistics";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -20,6 +21,7 @@ ReactDOM.render(
       <Route path="/admin" render={(props) => <Admin {...props} />} />
       <Route exact path="/" component={Welcome} />
       <Route exact path="/fixtures" component={Fixtures} />
+      <Route exact path="/teamStats" component={TeamStatistics} />
       {/*   <Redirect from="/" to="/admin/dashboard" /> */}
     </Switch>
     <PageFooterContent />
